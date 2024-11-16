@@ -36,8 +36,6 @@ test.get("/scan", async (req, res) => {
 test.get("/ports", async (req, res) => {
   const port = req.query.port as string;
 
-  console.log(port);
-
   if (
     !port ||
     !(await listAllSerialPorts()).map((x) => x.path).includes(port)
@@ -50,6 +48,7 @@ test.get("/ports", async (req, res) => {
         )
         .join("")
     );
+    return;
   }
 
   await openSerialPort(port);
