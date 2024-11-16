@@ -4,12 +4,17 @@ import express from "express";
 import auth from "./routes/AuthRouter";
 import test from "./routes/TestRouter";
 import api from "./routes/ApiRouter";
+import main from "./routes/MainRouter";
 
 const app = express();
+
+// Middlewares
+app.use(express.static("public"));
 
 app.use("/auth", auth);
 app.use("/test", test);
 app.use("/api", api);
+app.use("/", main);
 
 app.get("/", (req, res) => {
   res.send("Hello World!");

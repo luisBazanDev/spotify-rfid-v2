@@ -118,6 +118,45 @@ class SpotifyService {
     });
   }
 
+  async getCoverImage(type: ItemType, id: string): Promise<string | null> {
+    if (!(await this.validToken())) {
+      return null;
+    }
+
+    return new Promise((resolve) => {
+      switch (type) {
+        case "ALBUM":
+          this.spotifyApi.getAlbum(id).then((res) => {
+            resolve(res.body.images[0].url);
+          });
+          break;
+        case "ARTIST":
+          this.spotifyApi.getArtist(id).then((res) => {
+            resolve(res.body.images[0].url);
+          });
+          break;
+        case "PLAYLIST":
+          this.spotifyApi.getPlaylist(id).then((res) => {
+            resolve(res.body.images[0].url);
+          });
+          break;
+        case "PODCAST":
+          this.spotifyApi.getShow(id).then((res) => {
+            resolve(res.body.images[0].url);
+          });
+          break;
+        case "TRACK":
+          this.spotifyApi.getTrack(id).then((res) => {
+            resolve(res.body.album.images[0].url);
+          });
+          break;
+        default:
+          resolve(null);
+          break;
+      }
+    });
+  }
+
   /**
    * Resolve object information
    */
