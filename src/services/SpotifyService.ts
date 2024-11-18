@@ -171,7 +171,7 @@ class SpotifyService {
           resolve(
             await this.play("", {
               context_uri: baseUri + `artist:${id}`,
-              offset: { position: 0 },
+              offset: { position: Math.floor(Math.random() * 5) },
               position_ms: 0,
             })
           );
