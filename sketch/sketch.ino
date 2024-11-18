@@ -4,6 +4,7 @@
 // Pines
 #define RST_PIN 9
 #define SS_PIN 10
+// 3.3v ***********
 // PIN_MOSI = 11;
 // PIN_MISO = 12;
 // PIN_SCK = 13;
