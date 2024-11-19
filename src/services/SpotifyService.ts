@@ -177,7 +177,13 @@ class SpotifyService {
           );
           break;
         case "PLAYLIST":
-          resolve(await this.play(baseUri + `playlist:${id}`));
+          resolve(
+            await this.play("", {
+              context_uri: baseUri + `playlist:${id}`,
+              offset: { position: Math.floor(Math.random() * 5) },
+              position_ms: 0,
+            })
+          );
           break;
         case "PODCAST":
           resolve(await this.play(baseUri + `show:${id}`));
